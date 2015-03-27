@@ -2,14 +2,16 @@ name := "play2-graylog2"
 
 organization := "org.graylog2"
 
-version := "1.3.0-SNAPSHOT"
+version := "1.3.0-scala-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava)
+scalaVersion := "2.11.5"
 
-javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
 
 libraryDependencies ++= Seq(
-  "org.graylog2" % "gelfclient" % "1.2.0"
+  "org.graylog2" % "gelfclient" % "1.2.0",
+  "com.google.guava" % "guava" % "18.0"
 )
 
 // Settings for publishing to Maven Central, see http://www.scala-sbt.org/0.13/docs/Using-Sonatype.html
