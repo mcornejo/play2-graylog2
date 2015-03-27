@@ -15,7 +15,7 @@
  */
 package org.graylog2.logback.appender
 
-import org.graylog2.gelfclient.GelfMessage
+import org.graylog2.gelfclient.{GelfMessageLevel, GelfMessage}
 import play.api.mvc.{Result, RequestHeader, Filter}
 import scala.concurrent.{ExecutionContext, Future}
 import play.api.Play
@@ -79,6 +79,7 @@ object ScalaAccessLog extends Filter {
 
       val gelfMessage : GelfMessage = new GelfMessage(request.method + " " + request.uri, plugin.getLocalHostName)
 
+      gelfMessage.setLevel(GelfMessageLevel.INFO)
       fields.foreach(entry => gelfMessage.addAdditionalField(entry._1, entry._2))
 
       logger.append(gelfMessage)
